@@ -48,6 +48,14 @@ var UsersController = /** @class */ (function () {
             email = email.trim();
             password = password.trim();
             phone = (phone) ? phone.trim() : phone;
+            console.log("Looking for existing user with the given email \"" + email + "\".");
+            var user = _this.storage.getByEmail(email);
+            if (user) {
+                response.statusMessage = "A user already exists with the given email \"" + email + "\"!";
+                response.status(400).end();
+                console.log(response.statusMessage);
+                return;
+            }
             // Validate phone number format
             if (phone && !_this.validatePhoneNumber(phone)) {
                 response.statusMessage = "Given phone number \"" + phone + "\" does not match format XXX-XXX-XXXX";
@@ -89,6 +97,16 @@ var UsersController = /** @class */ (function () {
             updatedEmail = (updatedEmail) ? updatedEmail.trim() : updatedEmail;
             updatedPassword = (updatedPassword) ? updatedPassword.trim() : updatedPassword;
             updatedPhone = (updatedPhone) ? updatedPhone.trim() : updatedPhone;
+            console.log("Looking for existing user with the requested email\"" + updatedEmail + "\".");
+            var userWithSameEmail = (updatedEmail) ? _this.storage.getByEmail(updatedEmail) : null;
+            // Found a user with the same email that's not the user we're trying to update
+            // aka updating to requested email would result in a conflict
+            if (userWithSameEmail && userWithSameEmail.id != userId) {
+                response.statusMessage = "A user already exists with the requested email \"" + updatedEmail + "\"!";
+                response.status(400).end();
+                console.log(response.statusMessage);
+                return;
+            }
             // Validate phone number format
             if (updatedPhone && !_this.validatePhoneNumber(updatedPhone)) {
                 response.statusMessage = "Given phone number \"" + updatedPhone + "\" does not match format XXX-XXX-XXXX";
@@ -96,12 +114,19 @@ var UsersController = /** @class */ (function () {
                 console.log(response.statusMessage);
                 return;
             }
-            user.email = (updatedEmail) ? updatedEmail : user.email;
-            user.password = (updatedPassword) ? updatedPassword : user.password;
-            user.phone = (updatedPhone) ? updatedPhone : user.phone;
-            var shouldUpdate = (updatedEmail != null || updatedPassword != null || updatedPhone != null);
+            /* Check if we actually need to write anything, though we
+             * might want to always write just to capture that there
+             * was a requested updated as well the update timestamp. */
+            var shouldUpdate = ((updatedEmail != null && updatedEmail != user.email) ||
+                (updatedPassword != null && updatedPassword != user.password) ||
+                (updatedPhone != null && updatedPhone != user.phone));
             // Save updated data
             if (shouldUpdate) {
+                // Only updated if values are provided. This provides no way of
+                // un-setting data, but it's unclear if that is a valid use case.
+                user.email = (updatedEmail) ? updatedEmail : user.email;
+                user.password = (updatedPassword) ? updatedPassword : user.password;
+                user.phone = (updatedPhone) ? updatedPhone : user.phone;
                 // update last modified timestamp
                 user.updated = new Date();
                 console.log("Updating data for user " + userId);

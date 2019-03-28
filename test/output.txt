@@ -1,0 +1,458 @@
+
+
+
+----------------------------------------
+Create user (missing params)
+----------------------------------------
+
+HTTP/1.1 400 Email and password must be provided!
+X-Powered-By: Express
+Date: Thu, 28 Mar 2019 05:16:55 GMT
+Connection: keep-alive
+Content-Length: 0
+
+
+
+
+----------------------------------------
+Create user (bad phone)
+----------------------------------------
+
+HTTP/1.1 400 Given phone number "123 456 7890" does not match format XXX-XXX-XXXX
+X-Powered-By: Express
+Date: Thu, 28 Mar 2019 05:16:55 GMT
+Connection: keep-alive
+Content-Length: 0
+
+
+
+
+----------------------------------------
+Create user 1 (valid)
+----------------------------------------
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 153
+ETag: W/"99-slOgB9R/LKqa4BahMQ0l8CUvLeE"
+Date: Thu, 28 Mar 2019 05:16:55 GMT
+Connection: keep-alive
+
+{"id":"0001","email":"user1@test.com","password":"pass","phone":"123-456-7890","created":"2019-03-28T05:16:55.614Z","updated":"2019-03-28T05:16:55.614Z"}
+
+
+----------------------------------------
+Create user 1 (duplicate)
+----------------------------------------
+
+HTTP/1.1 400 A user already exists with the given email "user1@test.com"!
+X-Powered-By: Express
+Date: Thu, 28 Mar 2019 05:16:55 GMT
+Connection: keep-alive
+Content-Length: 0
+
+
+
+
+----------------------------------------
+Create user 2 (duplicate)
+----------------------------------------
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 153
+ETag: W/"99-1B+TsKPepcqA4pcHZDd1D4Kd56A"
+Date: Thu, 28 Mar 2019 05:16:55 GMT
+Connection: keep-alive
+
+{"id":"0002","email":"user2@test.com","password":"pass","phone":"123-456-7890","created":"2019-03-28T05:16:55.698Z","updated":"2019-03-28T05:16:55.698Z"}
+
+
+----------------------------------------
+Create user 3 (duplicate)
+----------------------------------------
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 153
+ETag: W/"99-3NgqiAcGbaw1g1VF4ioMlmeSfmQ"
+Date: Thu, 28 Mar 2019 05:16:55 GMT
+Connection: keep-alive
+
+{"id":"0003","email":"user3@test.com","password":"pass","phone":"123-456-7890","created":"2019-03-28T05:16:55.734Z","updated":"2019-03-28T05:16:55.734Z"}
+
+
+----------------------------------------
+Get all users
+----------------------------------------
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 463
+ETag: W/"1cf-IYZYnV8lj8VgD1LgaPadAPUgFhw"
+Date: Thu, 28 Mar 2019 05:16:55 GMT
+Connection: keep-alive
+
+[{"id":"0001","email":"user1@test.com","password":"pass","phone":"123-456-7890","created":"2019-03-28T05:16:55.614Z","updated":"2019-03-28T05:16:55.614Z"},{"id":"0002","email":"user2@test.com","password":"pass","phone":"123-456-7890","created":"2019-03-28T05:16:55.698Z","updated":"2019-03-28T05:16:55.698Z"},{"id":"0003","email":"user3@test.com","password":"pass","phone":"123-456-7890","created":"2019-03-28T05:16:55.734Z","updated":"2019-03-28T05:16:55.734Z"}]
+
+
+----------------------------------------
+Get specific user
+----------------------------------------
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 153
+ETag: W/"99-3NgqiAcGbaw1g1VF4ioMlmeSfmQ"
+Date: Thu, 28 Mar 2019 05:16:55 GMT
+Connection: keep-alive
+
+{"id":"0003","email":"user3@test.com","password":"pass","phone":"123-456-7890","created":"2019-03-28T05:16:55.734Z","updated":"2019-03-28T05:16:55.734Z"}
+
+
+----------------------------------------
+Get non-existent user
+----------------------------------------
+
+HTTP/1.1 404 No user was found with given id "9876"!
+X-Powered-By: Express
+Date: Thu, 28 Mar 2019 05:16:55 GMT
+Connection: keep-alive
+Content-Length: 0
+
+
+
+
+----------------------------------------
+Update user (non-existent)
+----------------------------------------
+
+HTTP/1.1 404 No user was found with given id "9876"!
+X-Powered-By: Express
+Date: Thu, 28 Mar 2019 05:16:55 GMT
+Connection: keep-alive
+Content-Length: 0
+
+
+
+
+----------------------------------------
+Update user (bad phone)
+----------------------------------------
+
+HTTP/1.1 400 Given phone number "123 456 7890" does not match format XXX-XXX-XXXX
+X-Powered-By: Express
+Date: Thu, 28 Mar 2019 05:16:55 GMT
+Connection: keep-alive
+Content-Length: 0
+
+
+
+
+----------------------------------------
+Update user (valid)
+----------------------------------------
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 152
+ETag: W/"98-k6EE/wK0q6/CKrgWsehtLK08/go"
+Date: Thu, 28 Mar 2019 05:16:55 GMT
+Connection: keep-alive
+
+{"id":"0001","email":"mike@test.com","password":"pass","phone":"123-456-7890","created":"2019-03-28T05:16:55.614Z","updated":"2019-03-28T05:16:56.001Z"}
+
+
+----------------------------------------
+Update user (duplicate email)
+----------------------------------------
+
+HTTP/1.1 400 A user already exists with the requested email "user2@test.com"!
+X-Powered-By: Express
+Date: Thu, 28 Mar 2019 05:16:56 GMT
+Connection: keep-alive
+Content-Length: 0
+
+
+
+
+----------------------------------------
+Update user (return to prev email)
+----------------------------------------
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 152
+ETag: W/"98-ykGMhwAgvQMverR2erMOfZ97otI"
+Date: Thu, 28 Mar 2019 05:16:56 GMT
+Connection: keep-alive
+
+{"id":"0001","email":"user1@test.com","password":"bro","phone":"111-222-3333","created":"2019-03-28T05:16:55.614Z","updated":"2019-03-28T05:16:56.082Z"}
+
+
+----------------------------------------
+Update user (no-op)
+----------------------------------------
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 152
+ETag: W/"98-ykGMhwAgvQMverR2erMOfZ97otI"
+Date: Thu, 28 Mar 2019 05:16:56 GMT
+Connection: keep-alive
+
+{"id":"0001","email":"user1@test.com","password":"bro","phone":"111-222-3333","created":"2019-03-28T05:16:55.614Z","updated":"2019-03-28T05:16:56.082Z"}
+
+
+----------------------------------------
+Create event #1
+----------------------------------------
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 79
+ETag: W/"4f-M+umQk9pjiV9lq7CQlFttZ3jZS8"
+Date: Thu, 28 Mar 2019 05:16:56 GMT
+Connection: keep-alive
+
+{"id":"0001","user":"0001","type":"LOGIN","created":"2019-03-28T05:16:56.185Z"}
+
+
+----------------------------------------
+Create event #2
+----------------------------------------
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 80
+ETag: W/"50-L10fk14gQyx2/z0FYvZoM06mLP8"
+Date: Thu, 28 Mar 2019 05:16:56 GMT
+Connection: keep-alive
+
+{"id":"0002","user":"0001","type":"LOGOUT","created":"2019-03-28T05:16:56.230Z"}
+
+
+----------------------------------------
+Create event #3
+----------------------------------------
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 79
+ETag: W/"4f-wf2pXK3v+cefvPVr00UAGyR3fHI"
+Date: Thu, 28 Mar 2019 05:16:56 GMT
+Connection: keep-alive
+
+{"id":"0003","user":"0002","type":"LOGIN","created":"2019-03-28T05:16:56.277Z"}
+
+
+----------------------------------------
+Create event #4
+----------------------------------------
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 80
+ETag: W/"50-k50UuZy259MxD9JrmYWT1xrMZMY"
+Date: Thu, 28 Mar 2019 05:16:56 GMT
+Connection: keep-alive
+
+{"id":"0004","user":"0002","type":"LOGOUT","created":"2019-03-28T05:16:56.323Z"}
+
+
+----------------------------------------
+Create event #5
+----------------------------------------
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 79
+ETag: W/"4f-3jZc6xMk0qK+ON4NWASjfSGT4LQ"
+Date: Thu, 28 Mar 2019 05:16:56 GMT
+Connection: keep-alive
+
+{"id":"0005","user":"0003","type":"LOGIN","created":"2019-03-28T05:16:56.369Z"}
+
+
+----------------------------------------
+Create event #6
+----------------------------------------
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 80
+ETag: W/"50-le7KMpVfLnxthsFJgZw4XsQeJfE"
+Date: Thu, 28 Mar 2019 05:16:56 GMT
+Connection: keep-alive
+
+{"id":"0006","user":"0003","type":"LOGOUT","created":"2019-03-28T05:16:56.403Z"}
+
+
+----------------------------------------
+Get all events for all
+----------------------------------------
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 484
+ETag: W/"1e4-2hS+jDYAYoQRC3FU77MV9P+LESM"
+Date: Thu, 28 Mar 2019 05:16:56 GMT
+Connection: keep-alive
+
+[{"id":"0001","user":"0001","type":"LOGIN","created":"2019-03-28T05:16:56.185Z"},{"id":"0002","user":"0001","type":"LOGOUT","created":"2019-03-28T05:16:56.230Z"},{"id":"0003","user":"0002","type":"LOGIN","created":"2019-03-28T05:16:56.277Z"},{"id":"0004","user":"0002","type":"LOGOUT","created":"2019-03-28T05:16:56.323Z"},{"id":"0005","user":"0003","type":"LOGIN","created":"2019-03-28T05:16:56.369Z"},{"id":"0006","user":"0003","type":"LOGOUT","created":"2019-03-28T05:16:56.403Z"}]
+
+
+----------------------------------------
+Get all events for non-existent user
+----------------------------------------
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 2
+ETag: W/"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w"
+Date: Thu, 28 Mar 2019 05:16:56 GMT
+Connection: keep-alive
+
+[]
+
+
+----------------------------------------
+Get all events for valid user
+----------------------------------------
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 162
+ETag: W/"a2-BJ7ezEB+TrbvK7/9xy3ORBIbGWU"
+Date: Thu, 28 Mar 2019 05:16:56 GMT
+Connection: keep-alive
+
+[{"id":"0003","user":"0002","type":"LOGIN","created":"2019-03-28T05:16:56.277Z"},{"id":"0004","user":"0002","type":"LOGOUT","created":"2019-03-28T05:16:56.323Z"}]
+
+
+----------------------------------------
+Get all events for all users, with valid time range
+----------------------------------------
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 484
+ETag: W/"1e4-2hS+jDYAYoQRC3FU77MV9P+LESM"
+Date: Thu, 28 Mar 2019 05:16:56 GMT
+Connection: keep-alive
+
+[{"id":"0001","user":"0001","type":"LOGIN","created":"2019-03-28T05:16:56.185Z"},{"id":"0002","user":"0001","type":"LOGOUT","created":"2019-03-28T05:16:56.230Z"},{"id":"0003","user":"0002","type":"LOGIN","created":"2019-03-28T05:16:56.277Z"},{"id":"0004","user":"0002","type":"LOGOUT","created":"2019-03-28T05:16:56.323Z"},{"id":"0005","user":"0003","type":"LOGIN","created":"2019-03-28T05:16:56.369Z"},{"id":"0006","user":"0003","type":"LOGOUT","created":"2019-03-28T05:16:56.403Z"}]
+
+
+----------------------------------------
+Get all events for all users, with valid time range (should return no events)
+----------------------------------------
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 2
+ETag: W/"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w"
+Date: Thu, 28 Mar 2019 05:16:56 GMT
+Connection: keep-alive
+
+[]
+
+
+----------------------------------------
+Get all events for given user, with valid time range
+----------------------------------------
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 162
+ETag: W/"a2-BJ7ezEB+TrbvK7/9xy3ORBIbGWU"
+Date: Thu, 28 Mar 2019 05:16:56 GMT
+Connection: keep-alive
+
+[{"id":"0003","user":"0002","type":"LOGIN","created":"2019-03-28T05:16:56.277Z"},{"id":"0004","user":"0002","type":"LOGOUT","created":"2019-03-28T05:16:56.323Z"}]
+
+
+----------------------------------------
+Get specific event
+----------------------------------------
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 79
+ETag: W/"4f-M+umQk9pjiV9lq7CQlFttZ3jZS8"
+Date: Thu, 28 Mar 2019 05:16:56 GMT
+Connection: keep-alive
+
+{"id":"0001","user":"0001","type":"LOGIN","created":"2019-03-28T05:16:56.185Z"}
+
+
+----------------------------------------
+Get non-existent event
+----------------------------------------
+
+HTTP/1.1 404 No event was found with given id "9876"!
+X-Powered-By: Express
+Date: Thu, 28 Mar 2019 05:16:56 GMT
+Connection: keep-alive
+Content-Length: 0
+
+
+
+
+----------------------------------------
+Create event (missing param)
+----------------------------------------
+
+HTTP/1.1 400 Event type and user id must be provided!
+X-Powered-By: Express
+Date: Thu, 28 Mar 2019 05:16:56 GMT
+Connection: keep-alive
+Content-Length: 0
+
+
+
+
+----------------------------------------
+Post to invalid url
+----------------------------------------
+
+HTTP/1.1 404 Not Found
+X-Powered-By: Express
+Content-Security-Policy: default-src 'self'
+X-Content-Type-Options: nosniff
+Content-Type: text/html; charset=utf-8
+Content-Length: 150
+Date: Thu, 28 Mar 2019 05:16:56 GMT
+Connection: keep-alive
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /users/1234</pre>
+</body>
+</html>

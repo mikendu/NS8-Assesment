@@ -1,19 +1,26 @@
 import express = require('express');
 import path = require('path');
+import storage = require('node-persist');
 
 import { Event, EventsStorage, EventsLocalStorage } from '../storage/EventsStorage';
 import { User, UsersStorage, UsersLocalStorage } from '../storage/UsersStorage';
 import { UsersController } from '../controller/Users';
 import { EventsController } from '../controller/Events';
 
-// Create a new Express app instance
+// Create a new Express app instance & storage instance
 const app: express.Application = express();
-
 
 // Top level page handler
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.static(path.join(__dirname + '/api')));
+
+
+// Ensure our storage engine is initialized
+storage.initSync({ dir: "/db"});
+
+// Clear storage on each run for testing purposes
+storage.clearSync();
 
 
 /*  
@@ -22,7 +29,7 @@ app.use(express.static(path.join(__dirname + '/api')));
     the underlying storage via a data-access modules, which we pass in here,
     using a dependency injection pattern. 
 
-      */
+    */
 const usersStorage: UsersStorage = new UsersLocalStorage();
 const eventsStorage: EventsStorage = new EventsLocalStorage();
 
@@ -51,6 +58,7 @@ app.route("/events/:eventId")
 app.listen(3000, 
     function () 
     {
-        console.log('Routed REST Server listening on port 3000!');
+        console.log('Simple REST Server listening on port 3000!');
     }
 );
+

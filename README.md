@@ -32,7 +32,7 @@ This is a simple RESTful API server, built to serve requests according to the sp
 
 ### POST /users
 * Creates a new user.
-* Returns HTTP 400 if a required parameter is missing.
+* Returns HTTP 400 if a required parameter is missing, or if a duplicate email is supplied.
 * Example: http://localhost:3000/users
 
 ### POST /events
