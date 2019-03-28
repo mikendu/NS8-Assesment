@@ -2,7 +2,7 @@ import storage = require('node-persist');
 
 
 // Define event data structure
-export type Event = 
+export interface Event
 {
     id: string;
     type: string;
@@ -12,34 +12,34 @@ export type Event =
 
 export interface EventsStorage
 {    
-    nextId() : number;
+    nextId() : string;
     listEvents(userId?:string, startDate?: Date, endDate?: Date): Event[];    
-    getById(eventId: string): Event;
-    createEvent(userId: string, eventType: string): Event;
+    getById(eventId: string): Event | null ;
+    createEvent(userId: string, eventType: string): Event | null ;
 }
 
 export class EventsLocalStorage implements EventsStorage
 {
-    nextId() : number
+    nextId() : string
     {
-        throw new Error("Method not implemented.");
+        return "0";
     }
 
     listEvents( userId?: string | undefined, 
                 startDate?: Date | undefined, 
                 endDate?: Date | undefined      ): Event[] 
     {
-        throw new Error("Method not implemented.");
+        return [];
     }    
     
-    getById(eventId: string): Event 
+    getById(eventId: string): Event | null 
     {
-        throw new Error("Method not implemented.");
+        return null;
     }
     
-    createEvent(userId: string, eventType: string): Event 
+    createEvent(userId: string, eventType: string): Event | null  
     {
-        throw new Error("Method not implemented.");
+        return null;
     }
 
     

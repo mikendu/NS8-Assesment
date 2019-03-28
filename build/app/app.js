@@ -8,8 +8,12 @@ var Users_1 = require("../controller/Users");
 var Events_1 = require("../controller/Events");
 // Create a new Express app instance
 var app = express();
+// Top level page handler
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(express.static(path.join(__dirname + '/api')));
 /*
-    Instanciate the controller modules that will facilitate
+    Instantiate the controller modules that will facilitate
     reading and writing user and event data. The controllers interface with
     the underlying storage via a data-access modules, which we pass in here,
     using a dependency injection pattern.
@@ -31,8 +35,6 @@ app.route("/events")
     .post(eventsHandler.createEvent);
 app.route("/events/:eventId")
     .get(eventsHandler.getEvent);
-// Top level page handler
-app.use(express.static(path.join(__dirname + '/api')));
 // Start the server
 app.listen(3000, function () {
     console.log('Routed REST Server listening on port 3000!');

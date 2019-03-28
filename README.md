@@ -13,6 +13,7 @@ This is a simple RESTful API server, built to serve requests according to the sp
 
 ### GET /users/[id]
 * Retrieves the user with the given identifier.
+* Returns HTTP 400 if user id is not provided.
 * Returns HTTP 404 if the no such user exists.
 * Example: http://localhost:3000/users/1234
 
@@ -25,6 +26,7 @@ This is a simple RESTful API server, built to serve requests according to the sp
 
 ### GET /events/[id]
 * Retrieves the event with the given identifier
+* Returns HTTP 400 if event id is not provided.
 * Returns HTTP 404 if no such event exists.
 * Example: http://localhost:3000/events/9876
 
@@ -35,12 +37,12 @@ This is a simple RESTful API server, built to serve requests according to the sp
 
 ### POST /events
 * Creates a new event.
-* Returns HTTP 400 if a required parameter is missing.
-
+* Returns HTTP 400 if a required parameter is missing
 * Example: http://localhost:3000/events
 
 ### PUT /users/[id]
 * Updates the given user's data.
+* Returns HTTP 400 if user id is not provided.
 * Returns HTTP 404 if no such user exists.
 * Example: http://localhost:3000/users/1234
 
@@ -102,5 +104,11 @@ Data is stored locally in json format, and will have the following schemas.
     * Do we need to limit response sizes / paginate data?
     * Schema design - schema can be optimized to make filtering more efficient
     * Date format in urls - do we care about human readable timestamps?
+    * Do we need to enforce referential integrety between users & events?
     * **Assumption** - Events are not mutable after creation. Users are always mutable.
     * **Assumption** - All API's vend all data.
+
+6. Automated Testing Strategy
+    * Unit tests for data individual components, ex data access layers?
+    * End to end integration testing?
+    * **Note** - For the purposes of this assessment, all testing was done manually

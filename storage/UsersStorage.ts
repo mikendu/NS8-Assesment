@@ -1,53 +1,53 @@
 import storage = require('node-persist');
 
 // Define event data structure
-export type User = 
+export interface User
 {
     id: string;
     email: string;
     password: string;
     phone: string;
     created: Date;
-    updated: Date;    
+    updated: Date;
 }
 
 export interface UsersStorage
 {    
-    nextId() : number;
+    nextId() : string;
     listUsers(): User[];    
-    getById(userId: string): User;
-    createUser(email: string, password: string, phone?:string): User;
-    updateUser(userId: string, userData: User): User;
+    getById(userId: string): User | null;
+    createUser(email: string, password: string, phone?:string): User | null;
+    updateUser(userId: string, userData: User): User | null;
 }
 
 
 export class UsersLocalStorage implements UsersStorage
 {
-    nextId(): number 
+    nextId(): string 
     {
-        throw new Error("Method not implemented.");
+        return "0";
     }    
     
     listUsers(): User[] 
     {
-        throw new Error("Method not implemented.");
+        return [];
     }
 
-    getById(userId: string): User 
+    getById(userId: string): User | null
     {
-        throw new Error("Method not implemented.");
+        return null;
     }
 
     createUser( email: string, 
                 password: string, 
-                phone?: string | undefined): User 
+                phone?: string | undefined):  User | null 
     {
-        throw new Error("Method not implemented.");
+        return null;
     }
 
-    updateUser(userId: string, userData: User): User 
+    updateUser(userId: string, userData: User):  User | null 
     {
-        throw new Error("Method not implemented.");
+        return null;
     }
 
     

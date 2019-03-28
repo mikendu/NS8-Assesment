@@ -4,19 +4,19 @@ var UsersLocalStorage = /** @class */ (function () {
     function UsersLocalStorage() {
     }
     UsersLocalStorage.prototype.nextId = function () {
-        throw new Error("Method not implemented.");
+        return "0";
     };
     UsersLocalStorage.prototype.listUsers = function () {
-        throw new Error("Method not implemented.");
+        return [];
     };
     UsersLocalStorage.prototype.getById = function (userId) {
-        throw new Error("Method not implemented.");
+        return null;
     };
     UsersLocalStorage.prototype.createUser = function (email, password, phone) {
-        throw new Error("Method not implemented.");
+        return null;
     };
     UsersLocalStorage.prototype.updateUser = function (userId, userData) {
-        throw new Error("Method not implemented.");
+        return null;
     };
     return UsersLocalStorage;
 }());
