@@ -51,6 +51,7 @@ Data is stored locally in json format, and will have the following schemas.
 ### User 
 ```json
 {
+    "id": "1234",
     "email" : "test@example.com",
     "password" : "elit3h4cker",
     "phone" : "111-222-3333",
@@ -62,6 +63,7 @@ Data is stored locally in json format, and will have the following schemas.
 ### Events 
 ```json
 {
+    "id" : "9876",
     "type" : "LOGIN",
     "user" : "1234",
     "created" : "1553290986"

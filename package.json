@@ -4,8 +4,10 @@
   "description": "Submission for the NS8 tech assessment",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "tsc"
+    "prebuild": "cp -a ./api ./build/app/",
+    "build": "tsc",
+    "start": "node build/app/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,7 @@
   "homepage": "https://github.com/mikendu/NS8-Assesment#readme",
   "dependencies": {
     "@types/express": "^4.16.1",
+    "@types/node-persist": "0.0.33",
     "express": "^4.16.4",
     "node-persist": "^3.0.4",
     "typescript": "^3.3.4000"
